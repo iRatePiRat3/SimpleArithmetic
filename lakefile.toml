@@ -1,0 +1,14 @@
+name = "Lagorithmically"
+version = "0.1.0"
+defaultTargets = ["lagorithmically"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+
+[[lean_lib]]
+name = "Lagorithmically"
+
+[[lean_exe]]
+name = "lagorithmically"
+root = "Main"
