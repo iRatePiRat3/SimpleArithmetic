@@ -88,7 +88,7 @@ A system for decoding signals through symbolic prime and Fibonacci factor analys
 
 ---
 
-## Formalized Millennium Problems
+## Millennium Problems
 
 Each problem is encoded as a curvature-driven system with binary structure and ergodic dynamics.
 
