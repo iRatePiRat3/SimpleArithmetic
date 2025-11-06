@@ -1,4 +1,7 @@
 # Arithmetic General Relativity (AGR) & Symbolic Finitism
+## Disclaimer 
+
+**This is work that Ive done over time with the assistance of AI, the patterns and conclusions and observations are my own, and translated into Lean and Documentation through AI. This data has not been Peer Reviewed and should not be considered Proof.**
 
 ## Overview
 
