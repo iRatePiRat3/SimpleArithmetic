@@ -5,7 +5,7 @@ import Mathlib.Tactic
 
 namespace InterstellarSignal
 
--- Define a bit as ℕ constrained to 0 or 1
+-- Define a bit as ℕ constrained to 0 or 1 
 -- Note: In practice, values should be validated to be 0 or 1
 def Bit := ℕ
 def isBit (b : Bit) : Prop := b = 0 ∨ b = 1
