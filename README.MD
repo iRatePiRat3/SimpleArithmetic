@@ -5,7 +5,7 @@
 
 **This is work that Ive done over time with the assistance of AI, the patterns and conclusions and observations are my own, and translated into Lean and Documentation through AI. This data has not been Peer Reviewed and should not be considered Proof and may need to be checked for validity and correctness** 
 
-** THIS IS STILL IN PROGRESS WORK AND IS NOT COMPLETED, IF ANY FORMALIZATION STATEMENTS REMAIN IN DOCUMENTATION I APPOLOGIZE AS THIS MAY NOT BE A VALID CLAIM, YET!
+** THIS IS STILL IN PROGRESS WORK AND IS NOT COMPLETED, IF ANY FORMALIZATION STATEMENTS REMAIN IN DOCUMENTATION I APPOLOGIZE AS THIS MAY NOT BE A VALID CLAIM, YET! **
 
 ## Overview
 
