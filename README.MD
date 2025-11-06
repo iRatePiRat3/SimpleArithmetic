@@ -1,3 +1,5 @@
+[![build](https://github.com/iRatePiRat3/SimpleArithmetic/actions/workflows/lake-build.yml/badge.svg)](https://github.com/iRatePiRat3/SimpleArithmetic/actions/workflows/lake-build.yml)
+
 # Arithmetic General Relativity (AGR) & Symbolic Finitism
 ## Disclaimer 
 
