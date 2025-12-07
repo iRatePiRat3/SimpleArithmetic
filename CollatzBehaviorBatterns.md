@@ -1,4 +1,3 @@
-```
 # THE COLlATZ PROOF: STRUCTURAL FLOW LAWS
 # Arithmetic General Relativity (AGR) Framework
 
