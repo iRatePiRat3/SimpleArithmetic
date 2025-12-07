@@ -714,7 +714,7 @@ The framework establishes the following rigorous theorems:
 
 ## Conclusion
 
-This framework demonstrates that mathematical truth follows geometric laws analogous to Einstein's General Relativity. All proofs are mathematically rigorous with no axioms required.
+
 
 -/
 end ArithmeticGeneralRelativity
