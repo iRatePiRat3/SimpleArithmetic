@@ -8,7 +8,7 @@ These tasks involve replacing existing placeholders (`admit`/`sorry`) with the n
 
 ### **P1: Collatz Descent Lemma** 
 * **Structural Purpose:** Proves the core **κ < 0** (negative curvature/convergence) principle. This closes the gap in the Lean proof (`CollatzResistanceCombined.md`).
-* **Mathematical Notation:** $\forall n: n \equiv 2^t - 1 \pmod{2^t} \implies T(n) \equiv 2^{t-1} - 1 \pmod{2^{t-1}}$
+* **Mathematical Notation:** $\forall n: n \equiv 2^t - 1 \pmod{2^t} \implies T(n) \equiv 2^{t-1} - 1 \pmod{2^{t-1}}$  **OR** $$T(2^t - 1) = (2^t - 1) + 2^{t-1} = 3 \cdot 2^{t-1} - 1$$
 * **Descriptive Detail:** Formal proof that applying the Collatz transformation $T(n) = \frac{3n+1}{2^k}$ to a number $n$ with maximum resistance ($\mathbf{2^t-1}$) **always** results in a number with **strictly reduced resistance** ($2^{t-1}-1$). This proves the geometric necessity of descent.
 
 ---
