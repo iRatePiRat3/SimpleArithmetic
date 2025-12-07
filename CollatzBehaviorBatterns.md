@@ -1,8 +1,7 @@
 
-# THE COLlATZ PROOF: STRUCTURAL FLOW LAWS
-# Arithmetic General Relativity (AGR) Framework
+# THE COLlATZ: STRUCTURAL BEHAVIOR
 ** THIS FILE IS BEING EDITED, SOME DEFINITIONS MAY BE INCORRECTLY PLACED OR WORDED...
-The Collatz Conjecture is proven by establishing **four deterministic structural behaviors** that replace random chance with predictable structural flow. The key is analyzing the number's **binary structure** (trailing zeros and set bits).
+The **four deterministic structural behaviors** that replace random chance with predictable structural flow. The key is analyzing the number's **binary structure** (trailing zeros and set bits).
 
 ---
 
