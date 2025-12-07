@@ -1,5 +1,5 @@
 
-# THE COLlATZ: STRUCTURAL BEHAVIOR
+# THE COLlATZ: STRUCTURAL BEHAVIOR CLASSIFICATION
 ** THIS FILE IS BEING EDITED, SOME DEFINITIONS MAY BE INCORRECTLY PLACED OR WORDED...
 The **four deterministic structural behaviors** that replace random chance with predictable structural flow. The key is analyzing the number's **binary structure** (trailing zeros and set bits).
 
