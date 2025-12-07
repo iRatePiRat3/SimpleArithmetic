@@ -11,7 +11,7 @@ Every number's local path is defined by a two-stage classification based on its 
 
 ### A. Odd Number Input (Structural Mass) - 
 
-Odd numbers define the sequence's **structural mass** and potential for growth. They are classified based on the **Popcount** (the number of '1' bits in sequences like 2^t - 1).
+Odd numbers define the sequence's **structural mass** and potential for growth. They are classified based on the **Popcount** (the number of '1' bits in sequences like 2^t - 1) being even or odd.
 
 | Classification | Binary Example | Popcount | Structural Role |
 | :--- | :--- | :--- | :--- |
@@ -20,7 +20,7 @@ Odd numbers define the sequence's **structural mass** and potential for growth. 
 
 ### B. Even Number Output (Structural Flow)
 
-Even numbers define the **resistance to division** based on their **trailing zeros** ($\nu_2$). This flow is guaranteed by the $\pmod{16}$ residue of the preceding odd number.
+Even numbers define the **resistance to division** based on their **trailing zeros** ($\nu_2$). Numbers ending with 10 are Odd Evens, and numbers ending in 00 are Even Evens.
 
 | Classification | Binary End Pattern | Trailing Zeros | Collatz Resistance |
 | :--- | :--- | :--- | :--- |
@@ -30,10 +30,11 @@ Even numbers define the **resistance to division** based on their **trailing zer
 
 ## 2. The Structural Resistance Gradient
 
-The "strength" of an odd number is determined by the **balance of 1s (mass) and 0s (fault lines)**.
+The "strength" of an odd number is determined by the **balance and Placement of 1s and 0s **.
 
 * **Weak Numbers (Example: 17, binary 10001):** These are **structurally sparse**. The internal **0s** act as carry barriers, preventing the geometric growth needed for a high-resistance chain.
-* **Strongest Numbers (Example: 31, binary 11111):** These are all **1s**, representing the mathematical "worst-case" maximum resistance that must be proven to fail.
+* **Stronger Number (Example: 27, binary 11011):** These are numbers who have combinations of trailing 1s seperated by the 0 barriers.
+* **Strongest Numbers (Example: 31, binary 11111):** These are all **1s**, representing the mathematical "worst-case" maximum resistance that must be proven to fail. These numbers introduce 0s immediately with the 3n+1 Step.
 
 ---
 
