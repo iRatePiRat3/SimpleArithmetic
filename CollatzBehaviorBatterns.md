@@ -51,4 +51,3 @@ Any attempt at structural growth is self-destructive. The $3N+1$ operation must 
 Maximum structural complexity is **unsustainable**. It proves that for the **Strongest** numbers (like 31), the subsequent odd number is guaranteed to have **lower resistance** than the starting number. This ensures that indefinite ascent is structurally impossible.
 
 The proof concludes that **structural complexity is a non-renewable resource** in the Collatz system, forcing all sequences to eventually decay and converge to the cycle $4 \rightarrow 2 \rightarrow 1$. 
-```
