@@ -1,0 +1,100 @@
+import os
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import zipfile
+
+# -----------------------------
+# Planetary data (Solar System + example exoplanet)
+planets = [
+    {"name": "Mercury", "a": 0.387, "e": 0.206},
+    {"name": "Venus", "a": 0.723, "e": 0.007},
+    {"name": "Earth", "a": 1.000, "e": 0.0167},
+    {"name": "Mars", "a": 1.524, "e": 0.093},
+    {"name": "Jupiter", "a": 5.203, "e": 0.049},
+    {"name": "Saturn", "a": 9.537, "e": 0.057},
+    {"name": "Uranus", "a": 19.19, "e": 0.046},
+    {"name": "Neptune", "a": 30.07, "e": 0.011},
+    {"name": "Proxima b", "a": 0.0485, "e": 0.1}
+]
+
+# -----------------------------
+# Compute r(nu) for true anomaly nu
+def r_nu(a, e, nu):
+    return a * (1 - e**2) / (1 + e * np.cos(nu))
+
+# Compute K numerically
+def compute_K(a, e, a0=1.0, steps=10000):
+    nu = np.linspace(0, 2*np.pi, steps)
+    r = r_nu(a, e, nu)
+    integrand = a / r - 1
+    delta_theta = np.trapz(integrand, nu)
+    K = delta_theta / np.sqrt(a / a0)
+    return delta_theta, K
+
+# -----------------------------
+# Create supplemental directory
+out_dir = "Supplemental_Material"
+os.makedirs(out_dir, exist_ok=True)
+
+# Compute K values and save CSV
+results = []
+for p in planets:
+    delta_theta, K = compute_K(p['a'], p['e'])
+    results.append([p['name'], p['a'], p['e'], delta_theta, K])
+
+df = pd.DataFrame(results, columns=['Planet', 'a (AU)', 'e', 'Δθ (rad)', 'K'])
+csv_path = os.path.join(out_dir, "K_numerical_values.csv")
+df.to_csv(csv_path, index=False)
+
+# -----------------------------
+# Plot K vs semi-major axis
+plt.figure(figsize=(10,6))
+plt.scatter(df['a (AU)'], df['K'], color='blue')
+plt.xscale('log')
+plt.xlabel('Semi-Major Axis (AU)')
+plt.ylabel('Geometric Residual Index (K)')
+plt.title('K vs Semi-Major Axis (Log Scale)')
+plt.grid(True, which='both', linestyle='--', alpha=0.5)
+plt.tight_layout()
+plot_path = os.path.join(out_dir, "K_numerical_vs_a.png")
+plt.savefig(plot_path, dpi=300)
+plt.close()
+
+# -----------------------------
+# Generate Δθ diagrams for each planet
+for p in planets:
+    a, e = p['a'], p['e']
+    nu = np.linspace(0, 2*np.pi, 1000)
+    r = r_nu(a, e, nu)
+    
+    # Ellipse coordinates
+    x_ell = r * np.cos(nu)
+    y_ell = r * np.sin(nu)
+    
+    # Circular baseline
+    x_circ = a * np.cos(nu)
+    y_circ = a * np.sin(nu)
+    
+    plt.figure(figsize=(5,5))
+    plt.plot(x_circ, y_circ, 'k--', label='Circular baseline')
+    plt.plot(x_ell, y_ell, 'r', label='Elliptical orbit')
+    plt.axis('equal')
+    plt.title(f"{p['name']} Δθ Visualization")
+    plt.xlabel('X (AU)')
+    plt.ylabel('Y (AU)')
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(os.path.join(out_dir, f"{p['name']}_DeltaTheta.png"), dpi=300)
+    plt.close()
+
+# -----------------------------
+# Zip everything into one package
+zip_path = "Supplemental_Material.zip"
+with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    for root, dirs, files in os.walk(out_dir):
+        for file in files:
+            zipf.write(os.path.join(root, file), arcname=file)
+
+print(f"Supplemental package created: {zip_path}")
+print(f"Individual files are in: {out_dir}")
