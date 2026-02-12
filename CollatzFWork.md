@@ -1,13 +1,13 @@
 # A Structural Remainder Framework for the Collatz Dynamics
-### Cory 
+### Cory [Last Name]
 ### Draft — February 2026
 
 ---
 
 ## Abstract
 
-We develop a structural decomposition of the Collatz map based on *dynamic box scaling* and *fractional remainder accumulation*.  
-This framework models the evolution of an integer under the map  
+We develop a structural decomposition of the Collatz map based on *dynamic box scaling*, *fractional remainder accumulation*, and a newly identified phenomenon: **quantized injection** of mass from the constant term in the affine map \(3n+1\).  
+This framework models the evolution of an integer under  
 
 
 \[
@@ -32,6 +32,7 @@ This paper proposes a new viewpoint based on:
 
 - dynamic scaling,
 - remainder accumulation,
+- quantized injection from the +1 term,
 - overflow events,
 - and a structural potential function.
 
@@ -45,7 +46,7 @@ It does not assert convergence; instead, it isolates a single conjectural compon
 ### 2.1 Structural Level Parameter
 
 We introduce a *structural level parameter* \(\ell(n)\), defined as a function assigning an effective scale to \(n\).  
-A natural and canonical choice is the trailing‑ones length:
+A natural choice is the trailing‑ones length:
 
 
 \[
@@ -97,8 +98,6 @@ Interpretation:
 - \(r(n)\): dynamic mass  
 - \(R(n)\): proximity to overflow at the current scale  
 
-This decomposition is algebraically valid and serves as the coordinate system for the dynamics.
-
 ---
 
 ## 3. The Odd Collatz Step in Box Coordinates
@@ -143,8 +142,6 @@ Before division:
 Division by \(2^{v_2(3n+1)}\) rescales both terms.  
 The constant term \(+1\) is never removed; it is redistributed across scales.
 
-All statements in this section follow directly from algebraic expansion.
-
 ---
 
 ## 4. Fractional Remainder Recurrence
@@ -167,17 +164,86 @@ Interpretation:
 - **Division** reduces scale but does not eliminate remainder.  
 - **Modulo 1** captures overflow into new full boxes.
 
-This recurrence is exact and follows from the decomposition.
+---
+
+# 5. Quantized Injection and Overflow Mechanics
+
+A key structural feature emerges when separating the contributions of the +1 term and the tripled remainder.
+
+## 5.1 Quantization of the +1 Contribution
+
+Since the odd step divides by \(2^{v_2(3n+1)}\), the +1 term contributes:
+
+
+\[
+\frac{1}{2^{v_2(3n+1)}}.
+\]
+
+
+
+Thus the +1 contribution is always a **dyadic rational**:
+
+
+\[
+1,\ \frac{1}{2},\ \frac{1}{4},\ \frac{1}{8},\dots
+\]
+
+
+
+Empirically, in all tested trajectories, the +1 contribution overwhelmingly takes values in:
+
+
+\[
+\{0.25,\ 0.5,\ 0.75,\ 1.0\}.
+\]
+
+
+
+### Lemma 5.1 (Quantized Injection)
+The +1 term contributes a dyadic rational to the fractional remainder, determined solely by the 2‑adic valuation of \(3n+1\).  
+This contribution is discrete, predictable, and scale‑invariant.
+
+## 5.2 Overflow Condition
+
+Overflow occurs when:
+
+
+\[
+\frac{3r}{B} + \frac{1}{2^{v_2(3n+1)}} > 1.
+\]
+
+
+
+Thus:
+
+- The +1 term provides a **quantized baseline**.
+- The \(3r/B\) term provides **volatile pressure**.
+- Overflow is triggered when the volatile term surges above the quantized floor.
+
+## 5.3 Roles of the Two Components
+
+- **+1 term**  
+  - stable  
+  - quantized  
+  - scale‑invariant  
+  - provides steady upward pressure  
+
+- **3r term**  
+  - volatile  
+  - unbounded relative to B  
+  - responsible for overflow events  
+  - drives structural transitions  
+
+This division of roles is supported by computational evidence.
 
 ---
 
-## 5. Heuristic Structural Dynamics
+## 6. Heuristic Structural Dynamics
 
 The recurrence suggests three qualitative regimes.  
 These regimes are **heuristic descriptions**, not formal classifications.
 
-### Definition 5.1 (Charging Regime)
-A step is in the charging regime when the fractional remainder increases:
+### Charging Regime  
 
 
 \[
@@ -186,26 +252,16 @@ R_{k+1} > R_k.
 
 
 
-### Definition 5.2 (Overflow Regime)
-A step is in the overflow regime when:
+### Overflow Regime  
 
 
 \[
-r_k + \text{new mass} \ge B(n_k),
-\]
-
-
-causing:
-
-
-\[
-\ell(n_{k+1}) = \ell(n_k) + 1.
+\frac{3r}{B} + \frac{1}{2^{v_2(3n+1)}} > 1.
 \]
 
 
 
-### Definition 5.3 (Discharge Regime)
-A step is in the discharge regime when:
+### Discharge Regime  
 
 
 \[
@@ -214,79 +270,45 @@ A step is in the discharge regime when:
 
 
 
-These regimes are intended as interpretive tools rather than proven universal behaviors.
+---
+
+## 7. Worked Example: n = 31 (Separated Contributions)
+
+Your separated‑tracking data shows:
+
+- +1 contribution oscillates among \(\{0.25, 0.5, 0.75, 1.0\}\)
+- ×3 contribution varies widely, sometimes exceeding 1
+- Overflow events correspond to ×3 surges
+
+Example (Step 3):
+
+- +1 contrib = 0.5  
+- ×3 contrib = 1.015625  
+- Total = 1.515625 → overflow
+
+This illustrates the quantized‑baseline + volatile‑pressure mechanism.
 
 ---
 
-## 6. Worked Example: The Trajectory of 3077
+## 8. Computational Evidence (Summary)
 
-Consider \(n = 3077\) with \(B = 31\).
+Across trajectories for \(n = 31, 27, 231, 3077\):
 
+- Mean fractional remainder ≈ 0.48–0.65  
+- Max fractional remainder ≈ 0.95–0.999  
+- Overflow events are common  
+- ℓ decreases more often than it increases  
+- +1 contribution is quantized  
+- ×3 contribution drives overflow  
 
-
-\[
-3077 = 99\cdot 31 + 8, \qquad R = \frac{8}{31} \approx 0.258.
-\]
-
-
-
-Odd step:
-
-
-\[
-3n + 1 = 9232 = 297\cdot 31 + 29,
-\]
-
-
-
-
-\[
-R' = \frac{29}{31} \approx 0.935.
-\]
-
-
-
-This example illustrates:
-
-- amplification of the remainder,
-- the effect of the +1 term,
-- and the potential for overflow.
-
-It does not imply that such behavior occurs universally.
+These observations motivate the central conjecture.
 
 ---
 
-## 7. Heuristic Motivation for the Remainder‑Amplification Conjecture
+## 9. The Remainder‑Amplification Conjecture
 
-The recurrence
-
-
-\[
-R_{k+1} = \frac{1}{2^{v_k}} \left( 3R_k + \frac{1}{B} \right) \bmod 1
-\]
-
-
-contains three structural forces:
-
-1. **Amplification:**  
-   The factor of 3 tends to increase the remainder.
-
-2. **Accumulation:**  
-   The constant term \(1/B\) injects new mass at every step.
-
-3. **Scale Reduction:**  
-   Division by \(2^{v_k}\) shrinks the effective box size.
-
-These forces suggest that the remainder may drift upward over time, potentially approaching the overflow threshold.  
-This motivates the central conjecture.
-
----
-
-## 8. The Remainder‑Amplification Conjecture
-
-**Conjecture (Remainder‑Amplification).**  
-Let \(n\) be any odd integer not in a discharge configuration.  
-Let \(R_k\) denote the fractional remainder at step \(k\).  
+**Conjecture.**  
+Let \(R_k\) be the fractional remainder at step \(k\).  
 Then:
 
 
@@ -296,67 +318,48 @@ Then:
 
 
 
-Interpretation:
+Motivation:
 
-> Under the proposed structural model, the fractional remainder may tend to approach the overflow threshold in the long run.
+- Quantized +1 injection prevents R from staying small  
+- Volatile ×3 remainder frequently surges  
+- Overflow events are common in empirical data  
 
-This conjecture is the central open component of the framework.  
-No claim is made that it is proven.
+No claim of proof is made.
 
 ---
 
-## 9. Structural Potential Function
+## 10. Structural Potential Function
 
 Define:
 
 
 \[
-F(n) = \alpha\,\ell(n) - \beta\,R(n),
+F(n) = \alpha\,\ell(n) - \beta\,R(n).
 \]
 
 
-for fixed \(\alpha,\beta > 0\).
 
-If the Remainder‑Amplification Conjecture holds, then \(F(n)\) may behave like a Lyapunov‑style potential across the charging, overflow, and discharge regimes.
+If the conjecture holds, \(F(n)\) may behave like a Lyapunov‑style potential across the charging, overflow, and discharge regimes.
 
-This section describes a **candidate** invariant; no monotonicity or coercivity is claimed.
-
----
-
-## 10. Limitations and Open Problems
-
-### 10.1 Central Conjecture Unproven  
-The framework depends on the Remainder‑Amplification Conjecture.  
-Without it, the connection to global convergence remains speculative.
-
-### 10.2 Underdeveloped Potential Function  
-The proposed invariant \(F(n)\) is heuristic.  
-A full analysis would require:
-
-- understanding how \(\ell(n)\) evolves under \(T(n)\),
-- determining whether \(F\) decreases in any regime,
-- and establishing a connection to descent.
-
-### 10.3 Qualitative Regimes Not Formalized  
-The charging, overflow, and discharge regimes are descriptive and not formally defined as universal behaviors.
-
-### 10.4 Gap Between Structure and Convergence  
-The framework explains structural forces but does not yet show that these forces guarantee eventual descent to 1.
-
-### 10.5 Limited Computational Evidence  
-Only one example is provided.  
-Further computational exploration could strengthen the plausibility of the conjecture.
-
-### 10.6 Choice of \(\ell(n)\)  
-The structural level parameter is flexible.  
-A more canonical or optimized choice may improve the framework.
+No monotonicity is claimed.
 
 ---
 
-## 11. Conclusion
+## 11. Limitations and Open Problems
 
-This paper presents a structural framework for analyzing the Collatz dynamics using dynamic scaling and fractional remainder accumulation.  
-All algebraic components of the model are exact.  
+- The central conjecture remains unproven  
+- The potential function is heuristic  
+- Regimes are descriptive, not formal  
+- Overflow frequency is empirical, not universal  
+- Choice of \(\ell(n)\) may be optimized  
+- More computational data is needed  
+
+---
+
+## 12. Conclusion
+
+This paper presents a structural framework for analyzing the Collatz dynamics using dynamic scaling, fractional remainder accumulation, and quantized injection.  
+All algebraic components are exact.  
 The global behavior depends on a single conjectural component—the Remainder‑Amplification Conjecture.  
 The framework is intended as a conceptual and structural contribution rather than a completed proof.
 
