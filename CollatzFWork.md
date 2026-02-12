@@ -1,5 +1,5 @@
 # A Structural Remainder Framework for the Collatz Dynamics
-### Cory [Last Name]
+### Cory 
 ### Draft — February 2026
 
 ---
