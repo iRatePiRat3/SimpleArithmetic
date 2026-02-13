@@ -1,0 +1,253 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Dyadic Band Geometry and Carry Isolation\\
+in Affine--Valuation Dynamical Systems}
+
+\author{Author Name}
+\date{\today}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We introduce a dyadic coordinate framework for analyzing affine--valuation dynamical systems of the form
+\[
+T_{a,b}(n) = \frac{an+b}{2^{v_2(an+b)}},
+\]
+defined on odd integers. The framework decomposes dynamics into vertical scale motion (band transitions), horizontal position within dyadic bands, and valuation-driven collapse. We prove exact band-transition and logarithmic drift identities and formalize a sharp carry-buffer isolation theorem quantifying when lower binary blocks influence higher blocks under affine multiplication. The results apply uniformly to the family of maps $T_{a,b}$, including but not limited to the classical odd-only $3n+1$ map. No convergence claims are made.
+\end{abstract}
+
+\section{Introduction}
+
+Affine maps followed by 2-adic normalization arise naturally in number-theoretic dynamics. Given fixed integers $a \ge 3$ (odd) and $b$, define
+\[
+T_{a,b}(n) = \frac{an+b}{2^{v_2(an+b)}}
+\]
+for odd integers $n$.
+
+Such maps combine:
+\begin{enumerate}
+\item multiplicative expansion,
+\item additive perturbation,
+\item 2-adic valuation discharge.
+\end{enumerate}
+
+We introduce a dyadic geometric coordinate system separating these mechanisms and formalize binary carry-locality phenomena governing structural interactions across bit scales.
+
+\section{Dyadic Band Coordinates}
+
+\begin{definition}[Band index]
+For $n \in \mathbb{N}$,
+\[
+b(n) = \lfloor \log_2 n \rfloor.
+\]
+Then
+\[
+2^{b(n)} \le n < 2^{b(n)+1}.
+\]
+\end{definition}
+
+\begin{definition}[Band scale]
+\[
+B(n) = 2^{b(n)+1}.
+\]
+\end{definition}
+
+\begin{definition}[Normalized band coordinate]
+\[
+x(n) = \frac{n}{B(n)} \in \left[\frac{1}{2},1\right).
+\]
+The mapping
+\[
+n \longleftrightarrow (b(n), x(n))
+\]
+is bijective.
+\end{definition}
+
+\begin{definition}[Remainder coordinate]
+\[
+r(n) = n - 2^{b(n)}, \quad 0 \le r(n) < 2^{b(n)},
+\]
+\[
+R(n) = \frac{r(n)}{B(n)} \in \left[0,\frac{1}{2}\right).
+\]
+Then
+\[
+x(n) = \frac{1}{2} + R(n).
+\]
+\end{definition}
+
+\section{Affine--Valuation Dynamics}
+
+Let $a \ge 3$ be odd and $b \in \mathbb{Z}$. Define
+\[
+T_{a,b}(n) = \frac{an+b}{2^{v_2(an+b)}}
+\]
+for odd $n$.
+
+\section{Vertical Motion}
+
+\begin{lemma}[Exact band identity]
+For odd $n$,
+\[
+b(T_{a,b}(n))
+=
+b(an+b)
+-
+v_2(an+b).
+\]
+\end{lemma}
+
+\begin{proof}
+\[
+T_{a,b}(n) = \frac{an+b}{2^{v_2(an+b)}}.
+\]
+Taking base-2 logarithms and floors yields the identity.
+\end{proof}
+
+\begin{corollary}[Band displacement]
+\[
+\Delta b(n)
+=
+b(T_{a,b}(n)) - b(n)
+=
+b(an+b) - v_2(an+b) - b(n).
+\]
+\end{corollary}
+
+\section{Logarithmic Drift Identity}
+
+\begin{lemma}[Exact drift decomposition]
+For odd $n$,
+\[
+\log_2 T_{a,b}(n)
+=
+\log_2 n
++
+\log_2 a
+-
+v_2(an+b)
++
+\epsilon(n),
+\]
+where
+\[
+\epsilon(n)
+=
+\log_2\!\left(1+\frac{b}{an}\right),
+\]
+and $|\epsilon(n)| = O(n^{-1})$.
+\end{lemma}
+
+\begin{proof}
+\[
+T_{a,b}(n)
+=
+\frac{an+b}{2^{v_2(an+b)}}
+=
+\frac{an}{2^{v_2(an+b)}}\left(1+\frac{b}{an}\right).
+\]
+Taking logarithms yields the result.
+\end{proof}
+
+\section{Carry-Buffer Isolation}
+
+\subsection{Binary block decomposition}
+
+Fix integers $m \ge 1$ and $t \ge 1$. Write
+\[
+n = H\,2^{m+t} + S,
+\quad 0 \le S < 2^m.
+\]
+
+In binary, this corresponds to:
+\begin{itemize}
+\item lowest $m$ bits: tail $S$,
+\item next $t$ bits: zeros (buffer),
+\item higher bits: head $H$.
+\end{itemize}
+
+\begin{theorem}[Sharp carry-buffer criterion]
+Let $a \ge 1$, $b \in \mathbb{Z}$, and define $y = an+b$. Then
+\[
+y = (aH)2^{m+t} + (aS+b).
+\]
+Define
+\[
+c = \left\lfloor \frac{aS+b}{2^{m+t}} \right\rfloor.
+\]
+Then
+\[
+\left\lfloor \frac{y}{2^{m+t}} \right\rfloor = aH + c.
+\]
+In particular,
+\[
+\text{Head unaffected by tail}
+\iff
+0 \le aS+b < 2^{m+t}.
+\]
+\end{theorem}
+
+\begin{proof}
+\[
+y = a(H2^{m+t}+S)+b = (aH)2^{m+t} + (aS+b).
+\]
+Divide by $2^{m+t}$ and take floors:
+\[
+\left\lfloor \frac{y}{2^{m+t}} \right\rfloor
+=
+aH + \left\lfloor \frac{aS+b}{2^{m+t}} \right\rfloor.
+\]
+\end{proof}
+
+\begin{theorem}[Prefix invariance]
+If
+\[
+0 \le aS+b < 2^{m+t},
+\]
+then all bits of $y$ at positions $\ge m+t$ depend only on $H$, not on $S$.
+\end{theorem}
+
+\begin{proof}
+Under the stated inequality,
+\[
+y = (aH)2^{m+t} + (aS+b),
+\]
+with $aS+b < 2^{m+t}$. Thus bits above position $m+t$ coincide with those of $aH$.
+\end{proof}
+
+\begin{corollary}[Uniform isolation condition]
+If $b \ge 0$ and
+\[
+a(2^m - 1) + b < 2^{m+t},
+\]
+then isolation holds for every $S \in [0,2^m)$.
+\end{corollary}
+
+\section{Structural Decomposition}
+
+The affine--valuation map separates into:
+\begin{enumerate}
+\item multiplicative expansion (controlled by $a$),
+\item binary carry interaction (controlled by buffer size),
+\item valuation discharge (controlled by $v_2(an+b)$).
+\end{enumerate}
+
+The dyadic band coordinate system isolates scale from intra-band structure and makes valuation discharge the sole driver of vertical collapse.
+
+\section{Scope}
+
+No convergence claims are made for any specific instance of $T_{a,b}$. The results provide structural tools applicable uniformly across affine--valuation dynamical systems.
+
+\end{document}
